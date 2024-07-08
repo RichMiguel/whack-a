@@ -14,7 +14,7 @@ const hitSound = new Audio('snd/Bonk Sound Effect 2.mp3');
 let lastHole;
 let timeUp = false;
 let score = 0;
-let lives = 3;
+let lives = 5;
 let min = 800;
 let max = 1800;
 
@@ -33,7 +33,6 @@ function randomHole(holes) {
     const idx = Math.floor(Math.random() * holes.length);
     const hole = holes[idx];
     if (hole === lastHole) {
-        console.log('Ah nah thats the same one bud');
         return randomHole(holes);
     }
     lastHole = hole;
@@ -47,14 +46,14 @@ function peep() {
     setTimeout(() => {
         if (hole.classList.contains('up')) {
             hole.classList.remove('up');
-            // lives--;
-            // livesStat.textContent = lives;
-            // if (lives <= 0) {
-            //     timeUp = true;
-            //     document.querySelector('.final-score').textContent = score;
-            //     showRestartMenu();
-            //     return;
-            // }
+            lives--;
+            livesStat.textContent = lives;
+            if (lives <= 0) {
+                timeUp = true;
+                document.querySelector('.final-score').textContent = score;
+                showRestartMenu();
+                return;
+            }
         }
         if (!timeUp) peep();
     }, time);
@@ -69,7 +68,7 @@ function startGame() {
     gameMenu.classList.remove('d-none');
     timeUp = false;
     score = 0;
-    lives = 3;
+    lives = 5;
     scoreBoard.textContent = score;
     livesStat.textContent = lives
     setTimeout(peep, 500);
@@ -81,7 +80,7 @@ function restartGame() {
     gameMenu.classList.remove('d-none');
     timeUp = false;
     score = 0;
-    lives = 3;
+    lives = 5;
     scoreBoard.textContent = score;
     livesStat.textContent = lives
     setTimeout(peep, 500);
