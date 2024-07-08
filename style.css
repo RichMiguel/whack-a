@@ -46,16 +46,14 @@ html {
     bottom: -30px;
   }
   
-  .mole {
-    background: url('svg/mole.svg') bottom center no-repeat;
-    background-size: 40%;
+  img.mole{
     position: absolute;
     top: 100%;
-    width: 100%;
-    height: 100%;
+    width: 30%;
+    height: auto;
     transition:all 0.3s;
   }
   
   .hole.up .mole {
-    top: 0;
+    top: 30%;
   }

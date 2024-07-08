@@ -36,14 +36,14 @@ function peep() {
     setTimeout(() => {
         if (hole.classList.contains('up')) {
             hole.classList.remove('up');
-            lives--;
-            livesStat.textContent = lives;
-            if (lives <= 0) {
-                timeUp = true;
-                document.querySelector('.final-score').textContent = score;
-                showRestartMenu();
-                return;
-            }
+            // lives--;
+            // livesStat.textContent = lives;
+            // if (lives <= 0) {
+            //     timeUp = true;
+            //     document.querySelector('.final-score').textContent = score;
+            //     showRestartMenu();
+            //     return;
+            // }
         }
         if (!timeUp) peep();
     }, time);
