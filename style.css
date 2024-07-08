@@ -1,59 +1,98 @@
 html {
-    box-sizing: border-box;
-    font-size: 10px;
-  }
-  
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
+  box-sizing: border-box;
+  font-size: 10px;
+}
 
-  h1 {
-    text-align: center;
-    font-size: 10rem;
-    line-height: 1;
-    margin-bottom: 0;
-  }
-  
-  .score {
-    background: rgba(255,255,255,0.2);
-    padding: 0 1rem;
-    line-height: 1;
-    border-radius: 1rem;
-  }
-  
-  
-  .hole {
-    flex: 1 0 33.33%;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .hole:after {
-    display: block;
-    background: url('svg/dirt.svg') bottom center no-repeat;
-    background-size: contain;
-    content: '';
-    width: 100%;
-    height:70px;
-    position: absolute;
-    z-index: 2;
-    bottom: -30px;
-  }
-  
-  img.mole{
-    position: absolute;
-    top: 100%;
-    width: 30%;
-    height: auto;
-    transition:all 0.3s;
-  }
-  
-  .hole.up .mole {
-    top: 30%;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 10rem;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.game-menu {
+  cursor: url('img/Tak\ berjudul217_20240708212344.png') 30 30, auto;
+  transition: all .2s;
+}
+
+.game-menu:active {
+  cursor: url('img/Tak\ berjudul217_20240708212414.png') 30 30, auto;
+}
+
+#cursor-marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+
+.score {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0 1rem;
+  line-height: 1;
+  border-radius: 1rem;
+}
+
+.hit-effect {
+  width: 200px; /* Sesuaikan ukuran dengan gambar efek */
+  height: 200px; /* Sesuaikan ukuran dengan gambar efek */
+  background-image: url('img/ei_1720452465343-removebg-preview.png');
+  background-size: cover;
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0; /* Mulai dengan opacity 0 (tidak terlihat) */
+  transition: opacity 0.2s ease-in-out; /* Transisi untuk animasi */
+}
+
+.hit-effect.show {
+  opacity: 1; /* Set opacity ke 1 untuk menampilkan efek */
+}
+
+
+
+.hole {
+  flex: 1 0 33.33%;
+  overflow: hidden;
+  position: relative;
+}
+
+.hole:after {
+  display: block;
+  background: url('svg/dirt.svg') bottom center no-repeat;
+  background-size: contain;
+  content: '';
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  z-index: 2;
+  bottom: -30px;
+}
+
+img.mole {
+  position: absolute;
+  top: 100%;
+  width: 35%;
+  height: auto;
+  transition: all 0.3s;
+}
+
+.hole.up .mole {
+  top: 25%;
+}
