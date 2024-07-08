@@ -10,6 +10,7 @@ const restartMenu = document.querySelector('.restart-menu');
 const gameMenu = document.querySelector('.game-menu');
 
 const hitSound = new Audio('snd/Bonk Sound Effect 2.mp3');
+const bgm = new Audio('snd/Sneaky Snitch.mp3');
 
 let lastHole;
 let timeUp = false;
@@ -18,7 +19,7 @@ let lives = 3;
 let min = 800;
 let max = 1800;
 
-document.addEventListener('mousemove', function(event) {
+document.addEventListener('mousemove', function (event) {
     const cursorMarker = document.getElementById('cursor-marker');
     cursorMarker.style.left = event.pageX + 'px';
     cursorMarker.style.top = event.pageY + 'px';
@@ -90,7 +91,7 @@ function restartGame() {
 function showRestartMenu() {
     gameMenu.classList.add('d-none');
     restartMenu.classList.remove('d-none');
-    restartMenu.classList.add('d-flex');   
+    restartMenu.classList.add('d-flex');
 }
 
 function bonk(e) {
@@ -112,5 +113,29 @@ function showHitEffect(hole) {
         hitEffect.classList.remove('show');
     }, 400); // Sesuaikan dengan durasi transisi CSS
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const bgMusic = document.getElementById('bg-music');
+
+    // Event listener untuk mendeteksi saat musik selesai diputar
+    bgMusic.addEventListener('ended', function () {
+        // Panggil fungsi untuk memulai ulang musik atau lakukan tindakan lain
+        restartBackgroundMusic();
+    });
+
+    // Fungsi untuk memulai musik latar belakang
+    function startBackgroundMusic() {
+        bgMusic.play(); // Memulai pemutaran musik
+    }
+
+    // Fungsi untuk memulai ulang musik latar belakang
+    function restartBackgroundMusic() {
+        bgMusic.currentTime = 0; // Mengatur waktu kembali ke awal
+        bgMusic.play(); // Memulai kembali pemutaran musik
+    }
+
+    startBackgroundMusic(); // Memulai musik latar belakang saat halaman dimuat
+});
+
 
 moles.forEach(mole => mole.addEventListener('click', bonk));
